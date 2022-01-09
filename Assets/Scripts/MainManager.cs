@@ -81,11 +81,18 @@ public class MainManager : MonoBehaviour
 
     void SaveNewRecord()
     {
-        if (m_Points > GameManager.gameManager.highestScore)
-        {
-            GameManager.gameManager.highestScore = m_Points;
-            GameManager.gameManager.bestPlayer = GameManager.gameManager.currentPlayer;
-            ManageData.SaveData();
-        }
+        PlayerRecord newRecord = new PlayerRecord(GameManager.gameManager.currentPlayer, m_Points);
+
+        GameManager.gameManager.records.Add(newRecord);
+        GameManager.gameManager.records.Sort(new ScoreCompare());
+        GameManager.gameManager.bestPlayer = GameManager.gameManager.records[0].name;
+        GameManager.gameManager.highestScore = GameManager.gameManager.records[0].score;
+        ManageData.SaveData();
+        //if (m_Points > GameManager.gameManager.highestScore)
+        //{
+        //    GameManager.gameManager.highestScore = m_Points;
+        //    GameManager.gameManager.bestPlayer = GameManager.gameManager.currentPlayer;
+        //    ManageData.SaveData();
+        //}
     }
 }

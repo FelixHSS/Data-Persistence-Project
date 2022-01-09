@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public string bestPlayer = "";
     public string currentPlayer = "";
 
+    public List<PlayerRecord> records;
+
     private void Awake()
     {
         if (gameManager != null)
@@ -19,6 +21,8 @@ public class GameManager : MonoBehaviour
 
         gameManager = this;
         DontDestroyOnLoad(gameManager);
+        records = new List<PlayerRecord>();
+        //records.Add(new PlayerRecord("", 0));
         ManageData.LoadData();
     }
 

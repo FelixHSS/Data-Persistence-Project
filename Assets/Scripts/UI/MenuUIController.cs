@@ -18,7 +18,7 @@ public class MenuUIController : MonoBehaviour
     }
     public void StartGame()
     {
-        SetUserName();
+        SetPlayerName();
         SceneManager.LoadScene(1);
     }
 
@@ -31,7 +31,12 @@ public class MenuUIController : MonoBehaviour
     #endif
     }
 
-    void SetUserName()
+    public void GoToRecords()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    void SetPlayerName()
     {
         GameManager.gameManager.currentPlayer = userName.text;
     }
